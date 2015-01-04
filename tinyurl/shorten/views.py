@@ -14,6 +14,7 @@ def default_values():
     dict['link_form'] = link_form
     dict['site_base_url'] = settings.SITE_BASE_URL
     dict['recent_links']  = GeneratedURL.objects.all().order_by('-date_generated')[0:10]
+    dict['state'] = 'default'
 
     return dict
 
@@ -64,6 +65,7 @@ def submit(request):
         link_form = LinkSubmitForm(request.POST)
 
     values = default_values()
+    values['state'] = "submitted"
     if link_form and link_form.is_valid():
         url = link_form.cleaned_data['u']
         link = None
@@ -82,6 +84,7 @@ def submit(request):
             obj.save()
             logging.log(logging.INFO, "Saving into database.")
 
+        values['status'] = True
         values['alias'] = wobj.word
         return render_to_response('shorten/index.html', values, context)
 

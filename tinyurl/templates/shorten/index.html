@@ -5,6 +5,18 @@
 {% block body_block %}
 <div class="jumbotron">
     <center>
+        {% if state == "submitted" %}
+
+            {% if status %}
+            <div class="alert alert-success" role="alert">
+                <strong>The Alias created is {{ alias }}</strong>
+            </div>
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                <strong>An Error Occurred!</strong>
+            </div>
+            {% endif %}
+        {% endif %}
         {% block url_form %}
         <form name="url_form" action="/submit/" method="get">
           {{ link_form }}
