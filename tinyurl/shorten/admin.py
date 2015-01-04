@@ -7,7 +7,7 @@ class GeneratedURLAdmin(admin.ModelAdmin):
     extra = 3
 
 class WordBankAdmin(admin.ModelAdmin):
-    list_display = ['id', 'word']
+    list_display = ['id', 'word', 'taken']
     pass
 
 

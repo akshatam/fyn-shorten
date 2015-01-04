@@ -16,5 +16,7 @@ def clean_word_bank():
         print(scrunched, file=targf)
 
     targf.close()
+    os.environ["TMP_WORD_BANK_FILE"] = TMP_WORD_BANK
+
 
 clean_word_bank()
