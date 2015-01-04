@@ -21,3 +21,8 @@ class GeneratedURL(models.Model):
 class LinkSubmitForm(forms.Form):
     u = forms.URLField(label='URL to be shortened:')
 
+class WordBank(models.Model):
+    word = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return self.word
