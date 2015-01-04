@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^$', 'shorten.views.index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^submit/$', 'shorten.views.submit'),
+    url(r'[^/]+', 'shorten.views.redirect'),
 )

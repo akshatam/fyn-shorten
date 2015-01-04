@@ -5,14 +5,15 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from models import GeneratedURL, LinkSubmitForm, WordBank
 from django.conf import settings
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
-def default_values():
+def default_values(request):
     link_form = LinkSubmitForm()
     dict = {}
     dict['link_form'] = link_form
-    dict['site_base_url'] = settings.SITE_BASE_URL
+    dict['site_base_url'] = request.META['HTTP_HOST']
     dict['recent_links']  = GeneratedURL.objects.all().order_by('-date_generated')[0:10]
     dict['state'] = 'default'
 
@@ -20,7 +21,7 @@ def default_values():
 
 def index(request):
     context = RequestContext(request)
-    defaults = default_values()
+    defaults = default_values(request)
 
     return render_to_response('shorten/index.html', defaults, context)
 
@@ -64,7 +65,7 @@ def submit(request):
     elif request.POST:
         link_form = LinkSubmitForm(request.POST)
 
-    values = default_values()
+    values = default_values(request)
     values['state'] = "submitted"
     if link_form and link_form.is_valid():
         url = link_form.cleaned_data['u']
@@ -90,3 +91,24 @@ def submit(request):
 
     values['status'] = False
     return render_to_response('shorten/index.html', values, context)
+
+def redirect(request):
+    print request
+    alias = request.path
+    alias = alias.replace('/', '')
+    try:
+        obj = WordBank.objects.get(word=alias)
+        if hasattr(obj, 'generatedurl'):
+            genurl = obj.generatedurl
+            return HttpResponseRedirect(genurl.url)
+        else:
+            values = default_values(request)
+            values['messages'] = ["Alias '%s' is Unused" % alias,]
+            return render_to_response('shorten/index.html', values, RequestContext(request))
+    except WordBank.DoesNotExist:
+        logging.log(logging.ERROR, "Can't redirect %s", alias)
+        values = default_values(request)
+        values['status'] = False
+        values ['state'] = 'redirecterror'
+        values['messages'] = ["No Alias '%s' found" % alias,]
+        return render_to_response('shorten/index.html', values, RequestContext(request))
