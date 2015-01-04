@@ -8,7 +8,7 @@
         {% if state == "submitted" %}
             {% if status %}
             <div class="alert alert-success" role="alert">
-                <strong>The Alias created is {{ alias }}</strong>
+                <strong>The Alias created is <a href="{{ fullurl  }}">{{ alias }}</a></strong>
             </div>
             {% else %}
             <div class="alert alert-danger" role="alert">

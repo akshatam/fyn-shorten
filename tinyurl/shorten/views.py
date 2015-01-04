@@ -87,6 +87,7 @@ def submit(request):
 
         values['status'] = True
         values['alias'] = wobj.word
+        values['fullurl'] = wobj.generatedurl.url
         return render_to_response('shorten/index.html', values, context)
 
     values['status'] = False
