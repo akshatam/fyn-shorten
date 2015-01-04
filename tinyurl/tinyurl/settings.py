@@ -72,6 +72,7 @@ ROOT_URLCONF = 'tinyurl.urls'
 
 WSGI_APPLICATION = 'tinyurl.wsgi.application'
 
+SITE_BASE_URL = "www.testurl.com"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

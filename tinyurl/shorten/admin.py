@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from models import GeneratedURL
+
+class GeneratedURLAdmin(admin.ModelAdmin):
+    model = GeneratedURL
+    extra = 3
+
+admin.site.register(GeneratedURL, GeneratedURLAdmin)

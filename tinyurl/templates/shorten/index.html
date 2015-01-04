@@ -1,0 +1,25 @@
+{% extends 'shorten/base.html' %}
+
+{% block title %}Shorten URLs.{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+<h2>Recent Links</h2>
+<ul>
+{% for link in recent_links %}
+	<p>hello</p>
+{% endfor %}
+</ul>
+</div>
+
+<div class="container">
+        {% block url_form %}
+        <form name="url_form" action="/submit/" method="get">
+          {{ link_form }}
+          <input  class="btn btn-lg btn-primary" type="submit" value="Shorten!" />
+        </form>
+        {% endblock %}
+</div>
+
+{% endblock %}
