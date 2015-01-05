@@ -8,7 +8,7 @@ So when other URL shorteners give you completely random URLs, this one will try 
 
 *For loading the wordbank, we have created and registered a django command called wordbank.*
 
-__ To use word bank you must first clean the words.txt, using python startServer.py from repo root.__
+*To use word bank you must first clean the words.txt, using python startServer.py from repo root.*
 
 Having said that, let's dive deep.
 
