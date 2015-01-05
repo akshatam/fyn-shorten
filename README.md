@@ -14,11 +14,10 @@ Having said that, let's dive deep.
 Get Going
 =========
 
-1. Download the db.sqlite3 file from the repository https://github.com/akshatam/fyn-db.
-2. Copy the db.sqlite3 into the directory of the code, fyn-shorten/tinyurl/
-
 *You can skip steps 1 & 2 and refer to step 5, if you want to automatically download the sqlite file from web.*
 
+1. Download the db.sqlite3 file from the repository https://github.com/akshatam/fyn-db.
+2. Copy the db.sqlite3 into the directory of the code, fyn-shorten/tinyurl/
 3. cd into the repo-home.
 4. Run python startServer.py, in case you want to reload the wordbank, pass the option -r or --reload.
 5. In case you wish to automatically download the sqlite file, pass the option -a or --auto-db
