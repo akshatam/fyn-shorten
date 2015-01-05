@@ -2,7 +2,9 @@ import datetime
 from django.db import models
 from django.conf import settings
 from django import forms
+from django.core.validators import URLValidator
 
+EXTENDED_SCHEMES = ['http', 'https', 'ftp', 'ftps', 'git', 'file']
 # Create your models here.
 class WordBank(models.Model):
     word = models.CharField(max_length=200, unique=True)
@@ -17,7 +19,7 @@ class GeneratedURL(models.Model):
     """
         This model represents a shortened URL which has already been generated.
     """
-    url = models.URLField(unique=True)
+    url = models.URLField(unique=True, validators=[URLValidator(EXTENDED_SCHEMES)])
     date_generated = models.DateTimeField(auto_now_add=True)
     generated_alias = models.OneToOneField(WordBank, primary_key=True)
 
