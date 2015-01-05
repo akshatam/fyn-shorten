@@ -94,7 +94,6 @@ def submit(request):
     return render_to_response('shorten/index.html', values, context)
 
 def redirect(request):
-    print request
     alias = request.path
     alias = alias.replace('/', '')
     try:
