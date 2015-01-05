@@ -8,7 +8,7 @@
         {% if state == "submitted" %}
             {% if status %}
             <div class="alert alert-success" role="alert">
-                <strong>The Alias created is <a href="{{ fullurl  }}">{{ alias }}</a></strong>
+                <strong>The shortened URL created is <a href="http://{{ site_base_url }}/{{ alias }}">http://{{ site_base_url }}/{{ alias }}</a></strong>
             </div>
             {% else %}
             <div class="alert alert-danger" role="alert">
