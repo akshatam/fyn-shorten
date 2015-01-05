@@ -89,7 +89,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'JST'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
