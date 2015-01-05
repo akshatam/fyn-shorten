@@ -29,6 +29,7 @@ class GeneratedURL(models.Model):
 
     def save(self, *args, **kwargs):
         self.generated_alias.taken = True
+        self.generated_alias.save()
         super(GeneratedURL, self).save(*args, **kwargs)
 
 class LinkSubmitForm(forms.Form):
