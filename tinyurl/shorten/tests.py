@@ -11,6 +11,12 @@ def load_test_wordbank():
         w = WordBank(word=word)
         w.save()
 
+def gen_url_factory(url):
+    w = generate_alias(url)
+    gu = GeneratedURL(url=url, generated_alias=w)
+    gu.save()
+    return gu
+
 class WBValidity(TestCase):
     def setUp(self):
         load_test_wordbank()
@@ -24,3 +30,15 @@ class WBValidity(TestCase):
         testurl = "http://test.com/121212/good-rice-bowl/"
         w = generate_alias(testurl)
         self.assertIsInstance(w, WordBank)
+        
+    def test_word_bank_exhaust(self):
+        g1 = gen_url_factory("http://test.com/121212/hello-rice-bowl/")
+        g2 = gen_url_factory("http://test.com/121212/hello-ice-bowl/")
+        g3 = gen_url_factory("http://test.com/121212/hello-ice-cold/")
+        g4 = gen_url_factory("http://test.com/121212/hello-hot-bowl/")
+        
+        g5 = gen_url_factory("http://test.com/121212/a1b2c3d4e6ghghw/")
+        
+        word = WordBank.objects.filter(word="hello")[0]
+        self.assertEqual(True, hasattr(word, "generatedurl"))
+        self.assertEqual(g5.generated_alias.word, "hello")
