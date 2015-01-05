@@ -7,6 +7,7 @@ This URL shortener shortens any URL based on a dictionary of words matching the 
 So when other URL shorteners give you completely random URLs, this one will try to give you some sensical alias for your URL.
 
 *For loading the wordbank, we have created and registered a django command called wordbank.*
+
 ** To use word bank you must first clean the words.txt, using python startServer.py from repo root. **
 
 Having said that, let's dive deep.
