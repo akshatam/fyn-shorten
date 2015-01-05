@@ -23,6 +23,7 @@ Get Going
   - From repo root, execute c:...> python startServer.py
   - cd tinyurl
   - python manage.py wordbank
+
 6.Run python manage.py runserver 0.0.0.0:8000
 
 Access
