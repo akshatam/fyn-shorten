@@ -29,4 +29,4 @@ Get Going
 Access
 ======
 
-Once the server is up and running, access the application at <server-ip>:8000/
+Once the server is up and running, access the application at server-ip:8000/
