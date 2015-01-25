@@ -10,6 +10,13 @@
 	<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 	<title>{% block title %}URL Shortener!{% endblock %}</title>
+	<SCRIPT LANGUAGE="JavaScript">
+
+		function copyToClipboard(text) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
+</SCRIPT>
 </head>
 
 <body>
@@ -27,6 +34,11 @@
 </nav>
 <div class="container-fluid">
 <div class="row">
+	<div class="col-sm-9 col-md-9">
+		<center><h2><span class="label label-success">LIL.onl</span> We like to keep it Simple!</h2></center>
+	{% block body_block %}
+	{% endblock %}
+	</div>
     <div class="col-sm-3 col-md-3">
         <div class="well sidebar-nav">
 			 <strong><h3>Recent Links</h3> (Hover for Original Link)</strong>
@@ -46,11 +58,7 @@
         </div>
     </div>
 
-	<div class="col-sm-9 col-md-9">
-		<center><h2><span class="label label-success">LIL.onl</span> We like to keep it Simple!</h2></center>
-	{% block body_block %}
-	{% endblock %}
-	</div>
+
 </div>
 </div>
 <footer>

@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from models import GeneratedURL, LinkSubmitForm, WordBank
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from urlparse import urlparse
 
 # Create your views here.
 
@@ -69,6 +70,17 @@ def submit(request):
     values['state'] = "submitted"
     if link_form and link_form.is_valid():
         url = link_form.cleaned_data['u']
+        url = url.lower()
+        parsed_uri = urlparse(url)
+
+        domain = '{uri.netloc}'.format(uri=parsed_uri)
+        print domain
+        print request.META['HTTP_HOST']
+        if domain == request.META['HTTP_HOST']:
+            values['status'] = False
+            values['messages'] = ["No no no, not me..!", "Hmmm, I see what you did there.. !"]
+            return render_to_response('shorten/index.html', values, context)
+
         link = None
         wobj = None
         try:
