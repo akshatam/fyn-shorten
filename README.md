@@ -24,6 +24,9 @@ Get Going
   - Example: python startServer.py (Quickly starts server)
   - Example: python startServer.py -r (Takes a while to load the updates into the database.)
   - Example: python startServer.py -a (Automatically downloads the file db.sqlite3)
+  - 
+  
+Thank you
 
 Access
 ======
